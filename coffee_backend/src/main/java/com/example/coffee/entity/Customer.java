@@ -41,4 +41,7 @@ public class Customer {
         this.balance = balance;
     }
 
+    public Customer(){
+    }
+
 }

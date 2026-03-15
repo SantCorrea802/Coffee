@@ -1,4 +1,4 @@
-package entity;
+package com.example.coffee.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -25,6 +25,14 @@ public class MoneyTransaction {
 
     @Column(name="timeTransaction", nullable = false)
     private LocalDateTime timeTransaction;
+
+    public MoneyTransaction(String senderAccountNumber, String receiverAccountNumber, BigDecimal amount,
+                            LocalDateTime timeTransaction){
+        this.senderAccountNumber = senderAccountNumber;
+        this.receiverAccountNumber = receiverAccountNumber;
+        this.amount = amount;
+        this.timeTransaction = timeTransaction;
+    }
 
 
 
