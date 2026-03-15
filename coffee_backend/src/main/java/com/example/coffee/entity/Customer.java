@@ -1,4 +1,4 @@
-package entity;
+package com.example.coffee.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -39,7 +39,6 @@ public class Customer {
         this.secondName = secondName;
         this.credits = credits;
         this.balance = balance;
-
     }
 
 }
