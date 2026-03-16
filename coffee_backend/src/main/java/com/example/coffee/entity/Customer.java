@@ -23,18 +23,18 @@ public class Customer {
     @Column(name="secondName", nullable = false, length = 20)
     private String secondName;
 
-    @Column(name="accountNumber", nullable = false)
+    @Column(name="accountNumber", unique = true, nullable = false)
     private String accountNumber;
 
     @Column(name="credits", nullable = false)
-    private Long credits;
+    private int credits;
 
     @Column(name="balance", nullable = false)
     private BigDecimal balance;
 
     @JsonCreator
     public Customer(@JsonProperty("firstName") String firstName, @JsonProperty("secondName") String secondName,
-                    @JsonProperty("credits") Long credits, @JsonProperty("balance") BigDecimal balance){
+                    @JsonProperty("credits") int credits, @JsonProperty("balance") BigDecimal balance){
         this.firstName = firstName;
         this.secondName = secondName;
         this.credits = credits;
