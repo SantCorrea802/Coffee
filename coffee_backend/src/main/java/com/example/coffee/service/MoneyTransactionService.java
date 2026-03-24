@@ -38,4 +38,9 @@ public class MoneyTransactionService {
         MoneyTransaction moneyTransaction = moneyTransactionMapper.toEntity(moneyTransactionDTO);
         return moneyTransactionMapper.toDTO(moneyTransactionRepository.save(moneyTransaction));
     }
+
+    public void deleteMoneyTransaction(Long id){
+        MoneyTransaction moneyTransaction = moneyTransactionRepository.findById(id).orElseThrow(()->new RuntimeException("Transacción no encontrada."));
+        moneyTransactionRepository.delete(moneyTransaction);
+    }
 }

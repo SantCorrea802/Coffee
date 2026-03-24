@@ -47,4 +47,11 @@ public class CustomerService {
         return customerMapper.toDTO(customerRepository.save(customer));
     }
 
+
+    public void deleteCustomer(Long id){
+        Customer customer = customerRepository.findById(id)
+                .orElseThrow(()->new RuntimeException("Cliente no encontrado."));
+        customerRepository.delete(customer);
+    }
+
 }

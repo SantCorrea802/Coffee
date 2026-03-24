@@ -40,4 +40,9 @@ public class ProductService {
         return productMapper.toDTO(productRepository.save(product));
     }
 
+    public void deleteProduct(Long id){
+        Product product = productRepository.findById(id).orElseThrow(()->new RuntimeException("Producto no encontrado."));
+        productRepository.delete(product);
+    }
+
 }

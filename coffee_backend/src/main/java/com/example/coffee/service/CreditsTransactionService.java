@@ -43,4 +43,9 @@ public class CreditsTransactionService {
         return creditsTransactionMapper.toDTO(creditsTransactionRepository.save(creditsTransaction));
     }
 
+    public void deleteCreditsTransaction(Long id){
+        CreditsTransaction creditsTransaction = creditsTransactionRepository.findById(id).orElseThrow(()->new RuntimeException("Transacción de créditos no encontrada."));
+        creditsTransactionRepository.delete(creditsTransaction);
+    }
+
 }
