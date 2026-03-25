@@ -26,6 +26,9 @@ public class MoneyTransaction {
     @Column(name="timeTransaction", nullable = false)
     private LocalDateTime timeTransaction;
 
+    public MoneyTransaction() {
+    }
+
     public MoneyTransaction(String senderAccountNumber, String receiverAccountNumber, BigDecimal amount,
                             LocalDateTime timeTransaction){
         this.senderAccountNumber = senderAccountNumber;
