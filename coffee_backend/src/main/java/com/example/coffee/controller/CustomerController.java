@@ -23,7 +23,7 @@ public class CustomerController {
     }
 
     // Obtener cliente por id
-    @GetMapping("/{id}")
+    @GetMapping("/id_customers/{id}")
     public ResponseEntity<CustomerDTO> getCustomerById(@PathVariable Long id){
         return ResponseEntity.ok(customerFacade.getCustomerById(id));
     }
@@ -34,8 +34,8 @@ public class CustomerController {
         return ResponseEntity.ok(customerFacade.getCustomerByFirstNameOrSecondName(firstName, secondName));
     }
 
-    // en postman el json para obtener un cliente por su número de cuenta debe ser algo como esto: {"accountNumber": "1234567890"}
-    @GetMapping("/{accountNumber")
+    //
+    @GetMapping("/{accountNumber}")
     public ResponseEntity<CustomerDTO> getCustomerByAccountNumber(@PathVariable String accountNumber){
         return ResponseEntity.ok(customerFacade.getCustomerByAccountNumber(accountNumber));
     }
@@ -46,8 +46,7 @@ public class CustomerController {
     public ResponseEntity<CustomerDTO> createCustomer(@RequestBody CustomerDTO customerDTO){
         return ResponseEntity.ok(customerFacade.createCustomer(customerDTO));
     }
-    // el json del body de la petición debe tener el formato de CustomerDTO, es decir, debe contener los campos: id, firstName, secondName, accountNumber y credits.
-
+    // el json del body de la petición debe tener el formato de CustomerDTO, es decir, debe contener los campos: firstName, secondName, accountNumber, balance y credits.
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteCustomer(@PathVariable Long id){
@@ -57,6 +56,18 @@ public class CustomerController {
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
+
+    // editar cliente, el json del body de la petición debe tener el formato de CustomerDTO, es decir, debe contener los campos: id, firstName, secondName, accountNumber y credits.
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateCustomer(@PathVariable Long id, @RequestBody CustomerDTO customerDTO) {
+        try {
+            return ResponseEntity.ok(customerFacade.updateCustomer(id, customerDTO));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+
+
     }
 
 
