@@ -24,33 +24,33 @@ public class CustomerController {
 
     // Obtener cliente por id
     @GetMapping("/{id}")
-    public ResponseEntity<CustomerDTO> getCustomerById(Long id){
+    public ResponseEntity<CustomerDTO> getCustomerById(@PathVariable Long id){
         return ResponseEntity.ok(customerFacade.getCustomerById(id));
     }
 
     // en postman el json para obtener un cliente por su nombre o apellido debe ser algo como esto: {"firstName": "Juan", "secondName": "Perez"}
     @GetMapping("/{firstName}/{secondName}")
-    public ResponseEntity<List<CustomerDTO>> getCustomerByFirstNameOrSecondName(String firstName, String secondName){
+    public ResponseEntity<List<CustomerDTO>> getCustomerByFirstNameOrSecondName(@PathVariable String firstName, @PathVariable String secondName){
         return ResponseEntity.ok(customerFacade.getCustomerByFirstNameOrSecondName(firstName, secondName));
     }
 
     // en postman el json para obtener un cliente por su número de cuenta debe ser algo como esto: {"accountNumber": "1234567890"}
     @GetMapping("/{accountNumber")
-    public ResponseEntity<CustomerDTO> getCustomerByAccountNumber(String accountNumber){
+    public ResponseEntity<CustomerDTO> getCustomerByAccountNumber(@PathVariable String accountNumber){
         return ResponseEntity.ok(customerFacade.getCustomerByAccountNumber(accountNumber));
     }
 
 
 
     @PostMapping
-    public ResponseEntity<CustomerDTO> createCustomer(CustomerDTO customerDTO){
+    public ResponseEntity<CustomerDTO> createCustomer(@RequestMapping CustomerDTO customerDTO){
         return ResponseEntity.ok(customerFacade.createCustomer(customerDTO));
     }
     // el json del body de la petición debe tener el formato de CustomerDTO, es decir, debe contener los campos: id, firstName, secondName, accountNumber y credits.
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteCustomer(Long id){
+    public ResponseEntity<?> deleteCustomer(@PathVariable Long id){
         try {
             customerFacade.deleteCustomer(id);
             return ResponseEntity.ok("Cliente eliminado correctamente");
