@@ -43,7 +43,7 @@ public class CustomerController {
 
 
     @PostMapping
-    public ResponseEntity<CustomerDTO> createCustomer(@RequestMapping CustomerDTO customerDTO){
+    public ResponseEntity<CustomerDTO> createCustomer(@RequestBody CustomerDTO customerDTO){
         return ResponseEntity.ok(customerFacade.createCustomer(customerDTO));
     }
     // el json del body de la petición debe tener el formato de CustomerDTO, es decir, debe contener los campos: id, firstName, secondName, accountNumber y credits.
