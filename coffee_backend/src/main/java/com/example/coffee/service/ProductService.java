@@ -40,6 +40,14 @@ public class ProductService {
         return productMapper.toDTO(productRepository.save(product));
     }
 
+    public ProductDTO updateProduct(Long id, ProductDTO productDTO){
+        Product product = productRepository.findById(id).orElseThrow(()->new RuntimeException("Producto no encontrado."));
+        product.setName(productDTO.getName());
+        product.setDescription(productDTO.getDescription());
+        product.setCredits(productDTO.getCredits());
+        return productMapper.toDTO(productRepository.save(product));
+    }
+
     public void deleteProduct(Long id){
         Product product = productRepository.findById(id).orElseThrow(()->new RuntimeException("Producto no encontrado."));
         productRepository.delete(product);

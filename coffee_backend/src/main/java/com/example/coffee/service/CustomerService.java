@@ -48,10 +48,23 @@ public class CustomerService {
     }
 
 
+    // borrar cliente por id, pero antes de eliminarlo se debe verificar que el cliente existe, si no existe se lanza una excepción con el mensaje "Cliente no encontrado."
     public void deleteCustomer(Long id){
         Customer customer = customerRepository.findById(id)
                 .orElseThrow(()->new RuntimeException("Cliente no encontrado."));
         customerRepository.delete(customer);
+    }
+
+
+    // Actualizar cliente, el json del body de la petición debe tener el formato de CustomerDTO, es decir, debe contener los campos: id, firstName, secondName, accountNumber y credits.
+
+    public CustomerDTO updateCustomer(Long id, CustomerDTO customerDTO){
+        Customer customer = customerRepository.findById(id).orElseThrow(()->new RuntimeException("Cliente no encontrado."));
+        customer.setFirstName(customerDTO.getFirstName());
+        customer.setSecondName(customerDTO.getSecondName());
+        customer.setAccountNumber(customerDTO.getAccountNumber());
+        customer.setCredits(customerDTO.getCredits());
+        return customerMapper.toDTO(customerRepository.save(customer));
     }
 
 }
