@@ -44,6 +44,8 @@ public class ProductService {
         Product product = productRepository.findById(id).orElseThrow(()->new RuntimeException("Producto no encontrado."));
         product.setName(productDTO.getName());
         product.setDescription(productDTO.getDescription());
+        product.setPrice(productDTO.getPrice());
+        product.setStock(productDTO.getStock());
         product.setCredits(productDTO.getCredits());
         return productMapper.toDTO(productRepository.save(product));
     }
