@@ -47,6 +47,10 @@ public class ProductController {
         return ResponseEntity.ok(productService.createProduct(productDTO));
     }
 
+
+    // para cambiar un producto, (solo se puede cambiar el nombre, la descripción y los credits, no se puede cambiar el precio ni el stock), el json del body de la petición debe tener el formato de ProductDTO, es decir, debe contener los campos: name, description y credits.
+    // El json debe ser: {"name": "Nuevo nombre", "description": "Nueva descripción", "credits": 10}
+    //
     @PutMapping("/{id}")
     public ResponseEntity<ProductDTO> updateProduct(@PathVariable Long id, @RequestBody ProductDTO productDTO) {
         if (id == null) {
