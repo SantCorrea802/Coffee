@@ -59,13 +59,10 @@ public class ProductController {
         if (id <= 0) {
             return ResponseEntity.badRequest().body(null);
         }
-        if (!productService.getAllProducts().stream().anyMatch(product -> product.getId().equals(id))) {
-            return ResponseEntity.badRequest().body(null);
-        }
         return ResponseEntity.ok(productService.updateProduct(id, productDTO));
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteProduct(@PathVariable Long id){
         try {
             productService.deleteProduct(id);
@@ -74,9 +71,6 @@ public class ProductController {
             }
             if (id <= 0) {
                 return ResponseEntity.badRequest().body("El ID del producto debe ser un número positivo.");
-            }
-            if (!productService.getAllProducts().stream().anyMatch(product -> product.getId().equals(id))) {
-                return ResponseEntity.badRequest().body("Producto no encontrado.");
             }
             return ResponseEntity.ok("Producto eliminado correctamente");
         } catch (IllegalArgumentException e) {
